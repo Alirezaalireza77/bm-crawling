@@ -1,0 +1,32 @@
+import scrapy
+import time
+import tempfile
+from scrapy.selector import Selector
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+
+
+class CarSpider(scrapy.Spider):
+    name = 'bama'
+    allowed_domain = ['bama.ir']
+    start_urls = ['https://www.bama.ir/car?page=1']
+
+
+    def__init__(self, *args, **kwargs):
+        super(CarSpider, self).__init__(*args, **kwargs)
+        option = Option()
+        option.headless = True
+
+
+        option.add_argument('--no-sandbox')
+        option.add_argument('--disable-dev-shm-usage')
+        option.add_argument('--disable-gpu')
+        option.add_argument('--remote-debugging-port=9222')
+
+
+        profile_dir = tempfile.mkdtemp()
+        option.add_argument(f"user-data-dir={profile_dir}')
+
+

@@ -61,3 +61,7 @@ class CarSpider(scrapy.Spider):
             'model': model,
             'price': price if price else None
         }
+
+
+
+

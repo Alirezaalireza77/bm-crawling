@@ -20,10 +20,10 @@ class CarSpider(scrapy.Spider):
         options = Options()
         options.headless = True
 
-        options.add_argument('--no-sandbox')  # Required for running as root
-        options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource issues
-        options.add_argument('--disable-gpu')  # Disable GPU for headless mode
-        options.add_argument('--remote-debugging-port=9222')  # Enable remote debugging
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--remote-debugging-port=9222')
 
         profile_dir = tempfile.mkdtemp()
         options.add_argument(f"user-data-dir={profile_dir}")
@@ -52,7 +52,7 @@ class CarSpider(scrapy.Spider):
         self.driver.quit()
 
     def parse_car(self, response):
-        # Extract car model and price
+
         model = response.xpath('normalize-space(//h1[@class="bama-ad-detail-title__title"])').get()
         price = response.xpath(
             'normalize-space(//div[@class="bama-ad-detail-price__section"]//span[@class="bama-ad-detail-price__price-text"])').get()
